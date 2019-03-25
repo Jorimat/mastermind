@@ -43,3 +43,27 @@ def checkguess(guess, codelength, chars):
     
     else:    
         return True
+
+    
+
+def all_codes(chars, codelength):
+    '''
+    Generate all possible codes
+    
+    '''
+    nchars_ = len(chars)
+    ncodes = nchars_**codelength
+    codes = []
+    mat = []
+
+    for i in range (codelength):
+        step =  (nchars_**i)
+        short  = sum([[char]*step for char in chars],[])
+        nrep = ncodes//len(short)
+        long = sum([short for i in range(nrep)], [])
+        mat.append(long)
+
+    for i in range(ncodes):
+        codes.append(''.join([m[i] for m in mat]))
+        
+    return sorted(codes)
